@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml:ns name="xp" space="http://www.transami.net/namespaces/xmlproof" ?>
+<?xml:ns name="opt" space="" ?>
+
+<xp:proofsheet>
+  <opt:contact>
+    <opt:name>:text:</opt:name>
+    <opt:address opt:type=":text:"> :text: #1..*# @tag@
+      <opt:street>:text:</opt:street>
+      <opt:city>:text:</opt:city>
+      <opt:state>:text:</opt:state>
+      <opt:country>:text:</opt:country>
+    </opt:address>
+    <opt:phone opt:type=":text:"> :text: #1..*# /\d{3,3}-\d{3,3}-\d{4,4}/ </opt:phone>
+  </opt:contact>
+</xp:proofsheet>

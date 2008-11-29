@@ -1,0 +1,109 @@
+
+<html>
+
+<head>
+  <title>XML TOOLS for Ruby</title>
+
+  <style>
+  
+    body { margin: 40px;
+           font-family: sans-serif;
+           font-size: 11pt;
+           line-height: 16pt;
+	 }
+
+    h1 { color: blue;
+         font-size: 36pt; 
+       }
+
+    div#menu { float: left;
+               background: #DDDDDD;
+	       margin-right: 20px;
+               margin-bottom: 20px;
+	       padding-left: 20px;
+	       padding-right: 20px;
+	       border: 1px solid black;
+	       text-align: center;
+	     }
+    
+    table#chart { 
+      margin-left: 15px;
+    }
+          
+    table#chart th { 
+      text-align: left;
+      padding: 5px;
+      background: #DDDDDD;
+    }
+       
+    table#chart td {
+      font-family: fixed;
+      font-size: 8pt;
+      padding: 5px; 
+    }
+    
+    table#list {
+      margin-left: 20px;
+      font-size: 11pt;
+    }
+    
+    p { text-align: justify; }
+    
+  </style>
+
+</head>
+
+<body>
+
+  <h1 style="test-align: center;">XML TOOLS for Ruby</h1>
+
+  <hr/><br/>
+
+  <div id="menu">
+    <h2>DOCS</h2>
+    <a href="xmlproof/xmlproof.html">XML Proof</a> <br/><br/>
+    <a href="xmlproof/xmlproof-spec.html">XML Proof Spec</a> <br/><br/>
+    <h2>API DOCS</h2>
+    <a href="libxml/rdoc/index.html">LibXML</a> <br/><br/>
+    <a href="libxslt/rdoc/index.html">LibXSLT</a> <br/><br/>
+    <a href="xmlproof/rdoc/index.html">XML Proof</a> <br/><br/>
+    <a href="xmltailor/rdoc/index.html">XML Tailor</a> <br/><br/>
+  </div>
+ 
+  <b>XML Tools</b> is a collection of scripts for working with XML via Ruby.
+
+  <p>XML Tools features C-based bindings to the GNU <b>libxml2</b> and <b>libxslt</b> libraries.
+  These are blazing fast parsers. Performance is very impressive compared to rexml
+  <i>(see table to right).</i>   If speed is your need, these are good libraries
+  to consider.</p>
+
+    <div style="float: right; background: #EEEEEE; margin-left: 20px; padding: 5px;">
+    &nbsp;&nbsp;<b>Speed Comparison libxml vs. rexml</b>&nbsp;&nbsp;
+    <table id="chart" border="1">
+      <tr><td><i>in seconds</i></td><th>libxml  </th><th>rexml   </th></tr>
+      <tr><th>opening       </th><td>0.003954</td><td>0.104750</td></tr>
+      <tr><th>attribute_add </th><td>0.001895</td><td>0.011114</td></tr>
+      <tr><th>subelems      </th><td>0.000585</td><td>0.004729</td></tr>
+      <tr><th>xpath         </th><td>0.013269</td><td>2.981499</td></tr>
+    </table>
+    </div>
+  
+  <p>XML-Tools also includes pure-Ruby libraries suitable to a variety of use cases:</p>
+  
+  <table id="list">
+  <tr><td> <b>XML Proof</b> - Unique XML schema language
+  <tr><td> <b>XML Tailor</b> - XML-valid Tals template system
+  <tr><td> <b>TeXML</b> - XML to TeX translation tool
+  <tr><td> <b>TkXML</b> - XML to Tk translation tool for building Tk GUIs via markup
+  <tr><td> <b>RTals</b> - Another Tals templates system (like Zope's)
+  <tr><td> <b>Sqlix</b> - SQL to XML generator
+  </table>
+  
+  <p>Each library is in various stages of 
+  development. The libxml and libxslt bindings work fairly well, but still need improvements.
+  Some of the other libs currently do not function at all --as they are in need of updating.
+  Everyone is encouraged to contribute.</p>
+
+</body>
+
+</html>

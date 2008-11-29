@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml:ns name="" space="http://www.transami.net/namespace/testing" ?>
+<?xml:ns name="xp" space="http://www.transami.net/namespace/xmlproof" ?>
+
+<xp:proofsheet>
+  <xp:arbitrary xp:xpath="//note">/^n.*/ :string: </xp:arbitrary>
+  <shiporder>
+		<orderperson> :text: ?bywho? </orderperson>
+		<orderclerk> :text: ?bywho? </orderclerk>
+		<shipto> #1..1# @tag@
+      <name> :text: </name>
+			<address> :text: </address>
+			<city> :text: </city>
+			<country> :text: </country>
+		</shipto>
+		<item> #1..*# +inclusive+
+      <title> :text: #1..1# </title>
+			<quantity> =use_again= :int: </quantity>
+      <overstock> =use_again= </overstock>
+			<price> :float: </price>
+		</item>
+	</shiporder>
+</xp:proofsheet>

@@ -1,0 +1,474 @@
+<html>
+
+<head>
+
+  <title>XML:Proof Specifications</title>
+
+  <style>
+  
+    span.n { font-size: 8pt; font-family: helvetica; font-weight: bold }
+  
+    p { font-size: 10pt; font-family: arial }
+  
+    h1 { font-family: arial }
+  
+    h2 { font-family: arial }
+  
+    h3 { font-family: arial }
+    
+    h4 { font-family: arial }
+  
+  </style>
+
+</head>
+
+<body>
+
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr>
+	<td>
+		<font size="10">xml:Proof</font><br/>
+		<font size="4">&lt;a schema for the rest of us/&gt;</font>
+	</td>
+	<td align="right">
+		<font size="2">v.02.06.10 Beta</font><br/>
+		<font size="2">&nbsp;Thomas Sawyer (c)2002</font>
+	</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+<center>
+<h1>Specification</h1>
+</center>
+
+<ol>
+
+<li><b>Prologue</b>
+
+  <ol>
+
+  <li>General comprehension of the W3C XML, Namespace, and XPath Recommendations,
+  and the Regular Expression Specification (see 10.1) is presumed by this document.</li>
+
+  <li><i>xml:Proof</i> is an XML schema. It was desgined to be easy to use
+  and to cover a vast portion of the XML schematic problem set.</li>
+
+  <li>A <i>proofsheet</i> is a valid XML document conforming to the xml:Proof specification.</li>
+  
+  <li>A <i>target document</i> is a XML document to which a proofsheet is intended to be applied.</li>
+  
+  <li>A <i>proof</i> is a parsed ordered set of proofsheets used to validate a target document.</li>
+
+  <li>A <i>proof-processor</i> is a program able to parse proofsheets and validate XML documents against such proofsheets.
+  The term <i>processor</i>, when unqualified, shall refer to this special case, proof-processor, in contrast to
+  the more general case, XML processor, throughout this document.</li>
+
+  <li>A <i>symbol</i> or <i>symbolic name</i> is a string of characters, matching against the regular expression /\w*/.</li>
+
+  <li>For the purposes of this specification, a <i>tag</i> will be the symbolic name of an XML element or attribute.
+  Element tags will be notated as <code>&lt;<i>tagname</i>&gt;</code> and attrtibute tags will be notated as <code><i>tagname</i>=</code></li>
+
+  </ol>
+
+</li>
+
+
+<li><b>Special Tags</b>
+
+  <ol>
+  
+  <li><i>Special tags</i> are proofsheet tags defined by the xml:Proof specification, in contrast to
+  <i>general tags</i> which instead derive from a target document.</li>
+
+  <li>The special root tag of a proofsheet is <code>&lt;proofsheet&gt;</code>.
+  The root tag can take the alternate form of <code>&lt;schema&gt;</code>. 
+  Both forms of the root tag serve the exact same purpose.</li>
+
+  <li>The <code>&lt;arbit&gt;</code> tag is a special xml:Proof tag used to indicate arbitrary
+  location within the target document. It has single valid attribute, <code>xpath=</code>,
+  which specifies the valid XPath to be matched against in the target document.</li>
+
+  <li>Both the root tag and the arbit tag, and its xpath attribute tag, must be prefixed in reference to the
+  xml:Proof namespace (3.5). While any arbitrary, but valid, prefix can be used to accomplish this,
+  it is recommended that you use <code>xp:</code> for consistancy and clearity.</li>
+
+  <li>All the general tags in a proofsheet are the same as those of the target document's
+  it intends to model. The hiearchy of those elements are also the same.</li>
+
+  </ol>
+  
+</li>
+
+
+<li><b>Die</b>
+
+  <ol>
+  
+  <li>A <i>Die</i> is a syntatical contruction which defines contstraints on a target document.</li>
+
+  <li>The sole text node of any proofsheet element and the value of any proofsheet attribute,
+  with expection to the special <code>xpath=</code> attribute, is a <i>die</i>.</li>
+
+  <li>A die may also be refered to as a <i>cast</i> and the act of writing or applying them, <i>casting</i>.</li>
+
+  <li>A die consists of an unordered list of <i>markers</i> seperated by whitespace.</li>
+
+  </ol>
+  
+</li>
+
+<li><b>Markers</b>
+
+  <ol>
+
+  <li><b>Name Marker</b>
+
+    <ol>
+
+    <li>(syntax) <code><b>=<i>name</i>=</b></code></li>
+
+    <li>A <i>name marker</i> is a symbol, enclosed by equal signs, which identifies the die
+    such that it can be reused elsewhere in a the proofsheet.</li>
+
+    <li>Name markers provide a convenient means of die reuse.</li>		
+
+    </ol>
+    
+  </li>
+  
+  <li><b>Regular Expression Marker</b>
+
+    <ol>
+
+    <li>(syntax) <code><b>/<i>regular expression</i>/</b></code></li>
+
+    <li>A <i>regular expression marker</i> is a syntatical structure conforming to the Regular Expression sepcification.
+    (see 10.1.4)</li>
+
+    <li>A <i>regular expression marker</i> dictates that the content of an element or attribute of the target document 
+    must match against it.</li>  
+
+    <li>If no regular expression marker is present in a die, the die's regular expression effectively
+    defaults to <code>/.*/</code></li>
+
+    </ol>
+    
+  </li>
+  
+  <li><b>Datatype Marker</b>
+
+    <ol>
+    
+    <li>(syntax) <code><b>:<i>datatype</i>:</b></code></li>
+
+    <li>The <code><i>datatype marker</i></code> is an arbitrary symbol, enclosed by colons, naming the type of data to be contanied 
+    by an element or attribute of the target document.</li>
+
+    <li>The xml:Proof specification does not dictate the selection of datatypes, this task is instead relinquished to the processor.</li>
+
+    <li>A <i>datatype marker</i> dictates that the content of an element or attribute of the target document 
+    must conform to it.</li> 
+    
+    <li>Datatype markers allow an xml:Proof processor to typecast XML content into its underlying language of implementation.</li>
+
+    <li>An sufficiant xml:Proof processor should provide a means to add and alter its internal datatypes.</li>
+
+    <li>Any datatype not recognize by the xml:Proof processor shall be considered a <code>string</code>.</li>
+
+    </ol>
+    
+  </li>
+  
+  <li><b>Order Marker</b>
+
+    <ol>
+
+    <li>(syntax) <code><b>@<i>order</i>@</b></code></li>
+
+    <li>The <i>order marker</i> is a symbol enclosed in at-signs, which specifies the sort order of an element's child elements.</li>
+  
+    <li>Valid values for <code><i>order</i></code> are <code>tag</code>, <code>content-a..z</code>,
+    <code>content-z..a</code> and <code>none</code>.</li>
+
+    <li>The <code>tag</code> value specifies that the child elements must be in the order as given within
+    the proofsheet.</li>
+
+    <li>The <code>content-a..z</code> and <code>content-z..a</code> values specify that the child element's 
+    must appear in alphanumerical sequence, descending and ascending, respectively, by their first text node.</li>
+
+    <li>The <code>none</code> value specifies that the child elements need not appear in any particular order, and is the
+    default setting if no order marker is specified within a die.
+
+    <li>The order marker does not specify that each of the child elements must occur,
+    or that one and only one of each said children must appear. It only specifies that,
+    should they appear, they do so in the given order.</li>
+
+    <li>The order marker is only applicable to an element, not an attribute, and the element must have child elements.</li>
+
+    </ol>
+
+  </li>
+  
+  <li><b>Set Marker</b>
+
+    <ol>
+    
+    <li>(syntax) <code><b>+<i>set</i>+</b></code></li>
+
+    <li>The <i>set marker</i> is a symbol, enclosed in addition signs, which specifies the ... of an element's child elements,</li>
+  
+    <li>Valid values for <code><i>set</i></code> are <code>inclusive</code>, <code>exclusive</code> and
+    <code>none</code>.</li>
+
+    <li>The <code>inclusive</code> value indicates that all the children elements must be present as given by the proofsheet,
+    but other elements may appear along with them.</li>
+
+    <li>The <code>exclusive</code> value indicates that all the children elements must be present as given by the proofsheet,
+    and that no other elements may appear along with them.</li>
+
+    <li>The value <code>none</code> indicates no requirments for the appearnece of child elements, and is the default
+    if no set marker is specified in the die.</li>
+
+    </ol>
+    
+  </li>
+  
+  <li><b>Range Marker</b>
+  
+    <ol>
+  
+    <li>(syntax) <code><b>#<i>range</i>#</b></code></li>
+
+    <li>The <i>range marker</i> is a symbol, enclosed by pound signs, which specifies the minumum and maximum number of a given
+    element or attribute that may appear within the target document.</li>
+
+    <li>For elements, a valid <code><i>range</i></code> can be <code>m..n</code> or <code>m...n</code>,
+    inclusive and exclusive of <code>n</code>, respectively, where <code>m</code> and <code>n</code> are unsigned integers
+    and <code>m</code> &lt; <code>n</code>, such thah m is the minimum number and n is the maximum number.</li>
+
+    <li>An element may also a range marker of the form,<code>m..*</code>, equivalant to <code>m...*</code>
+    specifying a minimum number (m) and an unbound maximum number.</li>
+
+    <li>The default range marker for an element, if none is specified within the die, is <code>0..*</code>.</li>
+
+    <li>For attributes, a valid <code><i>range</i></code> can only be <code>0..1</code> or <code>1..1</code>.</li>
+
+    <li>The default range marker for an attribute, if none is specified within the die, is <code>0..1</code>.</li>
+
+    </ol>
+    
+  </li>
+  
+  <li><b>Option Marker</b>
+
+    <ol>
+
+    <li>(syntax) <code><b>?<i>option</i>?</b></code></li>
+
+    <li>The <i>option marker</i> is an arbitrary symbol, or unordered list of symbols seperated by commas, enclosed by question marks, 
+    which specifies the element or attribute belongs to a group of simularly marked elements and attributes,
+    such that one and only one of such elements or attributes may appear within the target document.</li>
+
+    <li>Elements and/or attributes partaking of an identical <code><i>option</i></code> do not need to belong to the same parent, although
+    this can create a contridiction should an ancestor and one of its children partake of the same option group,
+    rendering a document invalid by definition.</li>
+
+    </ol>
+    
+  </li>
+  
+  <li><b>Collection Marker</b>
+
+    <ol>
+
+    <li>(syntax) <code><b>!<i>collection</i>!</b></code></li>
+
+    <li>A <i>collection marker</i> is an arbitrary symbol, enclosed by exlimation marks, which specifies
+    the element or attribute belongs to a group of simularly marked elements and attributes,
+    such that all of the elements and/or attributes sharing the same collection marker
+    must appear together within the target document.</li>
+
+    <li>Any given element or attribute can only belong to a single collection group.</li>
+
+    </ol>
+    
+  </li>
+  
+  <li><b>Track Marker</b>
+
+    <ol>
+
+    <li>(syntax) <code><b>*<i>track</i>*</b></code></li>
+
+    <li>The <i>track marker</i>, which is a boolean symbol enclosed by asterisks, is a special marker
+    which does not dictate structure or content. Rather it has a special purpose for XML datastores, 
+    specifying that the element or attribute should be specifically indexed.</li>
+
+    <li>Valid boolean symbols for <code><i>track</i></code> are <code>yes</code>, <code>no</code>, <code>true</code>,
+    or <code>false</code>, with the negative notations being the default.</li>
+
+    <li>The tracking of particular XML elements in a datastore allows for fast search and retirieval,
+    and fast aggregate functions to be applied to their values.</li>
+
+    </ol>
+    
+  </li>
+  
+  </ol>
+  
+</li>
+
+
+<li><b>File Extension and Namespace</b>
+
+  <ol>
+  
+  <li>The file extension for a proofsheet is <code>.xps</code>.</li>
+
+  <li>xml:Proof is fully namespace aware, both in functionality and in application to an XML Document.
+  Since namespace prefixes serve as mere proxies to actual namespaces, any arbitrary prefix can be used,
+  but the namespace itself, i.e. the uri, must be unique and persistent.</li>
+
+  <li>The <i>xml:Proof namespace</i> shall be <code>http://www.transami.net/namespace/xmlproof</code>.</li>
+
+  <li>Within a proofsheet, the namespace of all of xml:Proof's special elements and attributes must
+  belong to the xml:Proof namespace.</li>
+
+  <li>Within a proofsheet, all general xml:Proof elements and attributes must partake of the
+  same namespace as their counterparts within the target document.</li>
+
+  </ol>
+  
+</li>
+
+
+<li><b>Schema Declerations</b>
+
+  <ol>
+  
+  <li>A proof-processor will recognize <i>schema declarations</i> made via XML processing instructions
+  within the target document.</li>
+
+  <li>(Syntax) <code>&lt;?xml:schema uri="<i>uri</i>" url="<i>url</i>" segment="<i>segment</i>"?&gt;</code></li>
+  
+  <li>The <code>uri</code> attribute, or its synonym <code>space</code>, defines the kind of schema that is being utilized.
+  This is the specific namespace uri as defined by the schema's designers. In the case of xml:Proof, it
+  is "http://www.transami.net/namespace/xmlproof". It would be another string for, say, RELAX-NG or Schematron.</li>
+
+  <li>The <code>url</code> attribute, or its synonym <code>source</code> is a path to 
+  the .xps file. The url can be a local path. The url is neccessary since proofsheets cannot be embedded in the
+  target document like DTDs can.</li>
+
+  <li>The <code>segment</code> attribute, or its synonym <code>fragment</code> is an optional attribute
+  specifying an XPath which selects only a portion of the .xps file to use as the proofsheet.</li>
+  
+  <li>Interestingly, more than one schema can be declared within a given target document.
+  In so doing, schema declarations appearing earlier within the document have precedence
+  over those appering later. This allows for a means of cast overiding.</li>
+
+  <li>Note that one W3C reccomendation has been minorly violated by this schema declaration notation with
+  the reserved use of an instruction name matching /^xml/i.</li>
+  
+  </ol>
+
+</li>
+
+
+<li><b>Namespace Declarations</b>
+
+  <ol>
+
+  <li>This xml:Proof specification offers a variant notation for namespace declarations, differing
+  from the W3C recommendation. The W3C's recommendation is here considered somewhat nebulous and clumsy,
+  and further, clutters and obscures the information of relevance within an XML document.</li>
+  
+  <li>A proof-processor will recognize <i>namespace declarations</i> made via XML processing instructions
+  within the target document.</li>
+
+  <li>(Syntax) <code>&lt;?xml:ns prefix="<i>prefix</i>" uri="<i>uri</i>"?&gt;</li>
+
+  <li>The <code>prefix</code> and <code>uri</code> attribute tags can also be labeled
+  <code>name</code> and <code>space</code>, respectively.</li>
+
+  <li>This specification recommends this use namespace declarations via document level processing instructions,
+  instead of within general element tags as recommended by the W3C.</li>
+
+  <li>This notation can coexist with the standrard notation because, in effect, all the namespace processing
+  instruction specifies is insertion of a document level ATTRLIST for the namespaces thus defined.</li>
+
+  <pre>
+    &lt;!DocType <i>docname</i> [
+      &lt;!ATTLIST <i>docname</i> xmlns:<i>prefix</i> '<i>uri</i>' CDATA&gt;
+    ]&gt;
+  </pre>
+
+  <li>Obviously, many XML processors do not support this processing instruction. It is hoped that they will
+  adopt this improved notation over time as it is a very simple and useful addition.</li>
+
+  <li>A proof-processor will provide the means to convert between this notation and the standard notation.</li>
+
+  </ol>
+
+</li>
+
+<li><b>Functionality</b>
+
+  <ol>
+
+  <li>A proof-processor validates a target document by matching namespaces and XPaths between the proofsheet
+  and the target document, such that all target document elements and attributes are validated
+  againt their corresponding proofsheet's dies.
+  
+  <li>Any possible absolute XPath within a proofsheet should only be accounted for once.
+  If this is not adhered to it is not likely to cause a error. The proof-processor should only match against
+  the first occurance of an absolute die within the proofsheet.</li>
+
+  <li>The special &lt;arbit&gt; element overlaps in application with the general elements and attributes.
+  In other words, a target document's element or attribute must conform to both an artbitrary die and a general die
+  should both be applicable.</li>
+
+  <li>The special &lt;arbit&gt; element overlaps in application with other arbitrary assignments.
+  In other words, a target document's element or attribute must conform to all applicable artbitrary die.</li>
+
+  </ol>
+
+</li>
+
+
+<li><b>Appendix</b>
+
+  <ol>
+
+  <li><b>References</b>
+  
+    <ol>
+    
+    <li><a href="http://www.w3.org/TR/REC-xml">W3C XML Recommendation</a></li>
+    
+    <li><a href="http://www.w3.org/TR/REC-xml-names/">W3C Namespacee Recommendation</a></li>
+    
+    <li><a href="http://www.w3.org/TR/xpath">W3C XPath Recommendation</a></li>
+    
+    <li><a href="http://www.opengroup.org/onlinepubs/007908799/xbd/re.html">Regular Expressions Specification </a></li>
+    
+    </ol>
+    
+  </li>
+
+  </ol>
+  
+</li>
+
+</ol>
+
+<br/>
+<br/>
+<br/>
+
+</body>
+
+</html>
+

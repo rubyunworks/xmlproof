@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml:ns prefix="" uri="http://www.transami.net/namespace/testing" ?>
+<?xml:schema url="example1.xps" uri="http://www.transami.net/namespace/xmlproof" ?>
+
+<shiporder orderid="889923">
+	<orderperson>John Smith</orderperson>
+  <note>n</note>
+  <note>n</note>
+	<shipto>
+    <note>n</note>
+    <name>Ola Nordmann</name>
+		<address>Langgt 23</address>
+    <city>4000 Stavanger</city>
+    <country>Norway</country>
+	</shipto>
+	<item>
+		<title>Empire Burlesque</title>
+		<quantity>1</quantity>
+    <overstock>1</overstock>
+		<price>10.90</price>
+	</item>
+	<item>
+    <title>Hide your heart</title>
+		<quantity>1</quantity>
+    <overstock>1</overstock>
+		<price>9.90</price>
+	</item>
+</shiporder>
