@@ -1,4 +1,3 @@
-
 = XMLProof/Ruby - An Implementation of xml:Proof for Ruby
 
 ==<a schema for the rest of us/>
@@ -8,21 +7,14 @@
 XMLProof/Ruby is a 100% Ruby API for using xml:Proof, an alternate XML schema.
 It was born out of a need to typecast data taken from an XML Document.
 Imagine! All this just for that one simple need. But it seemed the
-right way to go about it, and the outcome has produced many additional fruits.
-xml:Proof has prooved to be quite a sophisticated XML schema,
-rivaling all others in capability and ease of use.
-
-== Installation
-
-To install XMLProof simply unpack the gzipped tarball into your local site_ruby path.
-This path is usually +/usr/local/lib/site_ruby/1.6/+.
-An install script is not provided as installation does not require any special files or settings.
+right way to go about it. xml:Proof has prooved to be quite a sophisticated
+XML schema.
 
 == Requirements
 
 XMLProof/Ruby requires:
 
-* TomsLib and REREXML, available at "http://www.transami.net/files/ruby/index.html".
+* REREXML, available at "http://www.transami.net/files/ruby/index.html".
 * REXML, available at "http://www.germane-software.com/software/rexml/".
 
 == Usage
