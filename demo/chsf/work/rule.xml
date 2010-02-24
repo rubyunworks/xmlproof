@@ -1,0 +1,9 @@
+<customer>
+	<on_account>if name == "tom" then "Yes"</on_account>
+</customer>
+
+<customers>
+	<customer>
+		puts name
+	</customer>
+</customers>

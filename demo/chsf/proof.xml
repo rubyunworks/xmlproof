@@ -1,0 +1,7 @@
+<customer count="[1..1]">
+	<name trace="index">.+</name>
+	<phone>.+</phone>
+	<address>.+</address>
+	<on_account>Yes|No|Y|N</on_account>
+	<balance trace="aggregate">.+</balance>
+</customer>

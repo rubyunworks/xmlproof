@@ -1,0 +1,10 @@
+<customer>
+	<name>Joe Blow</name>
+	<phone>505-995-4066</phone>
+	<address>
+		118 San Salvador
+		Santa Fe NM, 87501
+	</address>
+	<on_account>Yes</on_account>
+	<balance>0.00</balance>
+</customer>

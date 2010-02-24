@@ -1,0 +1,32 @@
+<Tk:Root name="test" title="Test">
+
+	<Tk:Frame name="menuframe">
+		<Tk:Menubutton name="filebutton" text="File" underline="0">
+			<Tk:Menu name="filemenu" tearoff="false">
+				<Tk:_add
+					_1="command"
+					label="Open"
+					command="openDocument"
+					underline="0"
+					accel="Ctrl+O" />
+				<Tk:_add
+					_1="command"
+					label="Exit"
+					command="exitApplication"
+					underline="0"
+					accel="Ctrl+Q" />
+			</Tk:Menu>
+			<Tk:_pack side="left" />
+		</Tk:Menubutton>
+		<Tk:_pack side="left" />
+	</Tk:Frame>
+
+	<Tk:_bind
+		_1="Control-o"
+		_2="openDocument" />
+
+	<Tk:_bind
+		_1="Control-q"
+		_2="exitApplication" />
+	
+</Tk:Root>
