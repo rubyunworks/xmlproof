@@ -6,15 +6,15 @@
 
 XMLProof/Ruby is a 100% Ruby API for using xml:Proof, an alternate XML schema.
 It was born out of a need to typecast data taken from an XML Document.
-Imagine! All this just for that one simple need. But it seemed the
-right way to go about it. xml:Proof has prooved to be quite a sophisticated
-XML schema.
+Imagine! All this just for that one simple need. But it seemed the right way
+to go about it at the time. xml:Proof has prooved to be quite a sophisticated
+XML schema. However, XML schemas in general have proven to be of limited utility.
 
 == Requirements
 
 XMLProof/Ruby requires:
 
-* REREXML, available at "http://www.transami.net/files/ruby/index.html".
+* REREXML (should be included)
 * REXML, available at "http://www.germane-software.com/software/rexml/".
 
 == Usage
